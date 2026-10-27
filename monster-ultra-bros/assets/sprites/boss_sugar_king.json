@@ -1,0 +1,49 @@
+{
+ "frame_w": 48,
+ "frame_h": 48,
+ "cols": 6,
+ "animations": {
+  "idle": {
+   "frames": [
+    0
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "squat": {
+   "frames": [
+    1
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "jump": {
+   "frames": [
+    2
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "stunned": {
+   "frames": [
+    3
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "hurt": {
+   "frames": [
+    4
+   ],
+   "fps": 1,
+   "loop": false
+  },
+  "defeat": {
+   "frames": [
+    5
+   ],
+   "fps": 1,
+   "loop": false
+  }
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "frame_w": 24,
+ "frame_h": 18,
+ "cols": 4,
+ "animations": {
+  "wave": {
+   "frames": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "fps": 8,
+   "loop": true
+  }
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "frame_w": 16,
+ "frame_h": 16,
+ "cols": 4,
+ "animations": {
+  "pop": {
+   "frames": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "fps": 16,
+   "loop": false
+  }
+ }
+}

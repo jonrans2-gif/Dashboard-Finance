@@ -1,0 +1,15 @@
+{
+ "frame_w": 16,
+ "frame_h": 12,
+ "cols": 2,
+ "animations": {
+  "wave": {
+   "frames": [
+    0,
+    1
+   ],
+   "fps": 12,
+   "loop": true
+  }
+ }
+}

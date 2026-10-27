@@ -1,0 +1,15 @@
+{
+ "frame_w": 12,
+ "frame_h": 16,
+ "cols": 2,
+ "animations": {
+  "idle": {
+   "frames": [
+    0,
+    1
+   ],
+   "fps": 3,
+   "loop": true
+  }
+ }
+}

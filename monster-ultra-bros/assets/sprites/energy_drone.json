@@ -1,0 +1,32 @@
+{
+ "frame_w": 24,
+ "frame_h": 18,
+ "cols": 7,
+ "animations": {
+  "fly": {
+   "frames": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "fps": 12,
+   "loop": true
+  },
+  "charge": {
+   "frames": [
+    4,
+    5
+   ],
+   "fps": 12,
+   "loop": true
+  },
+  "broken": {
+   "frames": [
+    6
+   ],
+   "fps": 1,
+   "loop": false
+  }
+ }
+}

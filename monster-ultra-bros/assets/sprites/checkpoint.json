@@ -1,0 +1,24 @@
+{
+ "frame_w": 16,
+ "frame_h": 32,
+ "cols": 5,
+ "animations": {
+  "inactive": {
+   "frames": [
+    0
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "active": {
+   "frames": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "fps": 8,
+   "loop": true
+  }
+ }
+}

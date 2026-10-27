@@ -1,0 +1,16 @@
+{
+ "frame_w": 16,
+ "frame_h": 16,
+ "cols": 3,
+ "animations": {
+  "zap": {
+   "frames": [
+    0,
+    1,
+    2
+   ],
+   "fps": 18,
+   "loop": true
+  }
+ }
+}

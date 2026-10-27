@@ -1,0 +1,17 @@
+{
+ "frame_w": 8,
+ "frame_h": 8,
+ "cols": 4,
+ "animations": {
+  "twinkle": {
+   "frames": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "fps": 14,
+   "loop": false
+  }
+ }
+}

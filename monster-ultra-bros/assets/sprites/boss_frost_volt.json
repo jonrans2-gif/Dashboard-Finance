@@ -1,0 +1,42 @@
+{
+ "frame_w": 48,
+ "frame_h": 40,
+ "cols": 5,
+ "animations": {
+  "idle": {
+   "frames": [
+    0
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "charge": {
+   "frames": [
+    1
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "stunned": {
+   "frames": [
+    2
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "hurt": {
+   "frames": [
+    3
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "defeat": {
+   "frames": [
+    4
+   ],
+   "fps": 1,
+   "loop": true
+  }
+ }
+}

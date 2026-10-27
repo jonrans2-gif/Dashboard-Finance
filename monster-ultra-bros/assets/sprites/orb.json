@@ -1,0 +1,39 @@
+{
+ "frame_w": 8,
+ "frame_h": 8,
+ "cols": 8,
+ "animations": {
+  "fly": {
+   "frames": [
+    0,
+    1
+   ],
+   "fps": 12,
+   "loop": true
+  },
+  "fly_red": {
+   "frames": [
+    2,
+    3
+   ],
+   "fps": 12,
+   "loop": true
+  },
+  "fly_green": {
+   "frames": [
+    4,
+    5
+   ],
+   "fps": 12,
+   "loop": true
+  },
+  "fly_pink": {
+   "frames": [
+    6,
+    7
+   ],
+   "fps": 12,
+   "loop": true
+  }
+ }
+}

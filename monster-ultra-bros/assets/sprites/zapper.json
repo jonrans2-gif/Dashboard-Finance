@@ -1,0 +1,21 @@
+{
+ "frame_w": 16,
+ "frame_h": 16,
+ "cols": 2,
+ "animations": {
+  "off": {
+   "frames": [
+    0
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "on": {
+   "frames": [
+    1
+   ],
+   "fps": 1,
+   "loop": true
+  }
+ }
+}

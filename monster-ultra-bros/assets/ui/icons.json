@@ -1,0 +1,77 @@
+{
+ "frame_w": 12,
+ "frame_h": 12,
+ "cols": 10,
+ "animations": {
+  "cell_full": {
+   "frames": [
+    0
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "cell_empty": {
+   "frames": [
+    1
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "life": {
+   "frames": [
+    2
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "token": {
+   "frames": [
+    3
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "shard_full": {
+   "frames": [
+    4
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "shard_empty": {
+   "frames": [
+    5
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "clock": {
+   "frames": [
+    6
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "core": {
+   "frames": [
+    7
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "lock": {
+   "frames": [
+    8
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "enemy": {
+   "frames": [
+    9
+   ],
+   "fps": 1,
+   "loop": true
+  }
+ }
+}

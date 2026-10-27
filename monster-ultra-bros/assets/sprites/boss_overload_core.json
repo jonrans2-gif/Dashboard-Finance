@@ -1,0 +1,43 @@
+{
+ "frame_w": 96,
+ "frame_h": 96,
+ "cols": 4,
+ "animations": {
+  "idle": {
+   "frames": [
+    0,
+    1
+   ],
+   "fps": 2,
+   "loop": true
+  },
+  "charge": {
+   "frames": [
+    2
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "open": {
+   "frames": [
+    3
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "hurt": {
+   "frames": [
+    4
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "dead": {
+   "frames": [
+    5
+   ],
+   "fps": 1,
+   "loop": true
+  }
+ }
+}

@@ -1,0 +1,21 @@
+{
+ "frame_w": 16,
+ "frame_h": 32,
+ "cols": 2,
+ "animations": {
+  "closed": {
+   "frames": [
+    0
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "open": {
+   "frames": [
+    1
+   ],
+   "fps": 1,
+   "loop": true
+  }
+ }
+}

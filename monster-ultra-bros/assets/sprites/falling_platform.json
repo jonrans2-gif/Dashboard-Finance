@@ -1,0 +1,21 @@
+{
+ "frame_w": 32,
+ "frame_h": 8,
+ "cols": 2,
+ "animations": {
+  "idle": {
+   "frames": [
+    0
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "shake": {
+   "frames": [
+    1
+   ],
+   "fps": 1,
+   "loop": true
+  }
+ }
+}

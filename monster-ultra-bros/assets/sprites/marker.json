@@ -1,0 +1,15 @@
+{
+ "frame_w": 16,
+ "frame_h": 6,
+ "cols": 2,
+ "animations": {
+  "blink": {
+   "frames": [
+    0,
+    1
+   ],
+   "fps": 10,
+   "loop": true
+  }
+ }
+}

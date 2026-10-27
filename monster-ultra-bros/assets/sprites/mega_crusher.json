@@ -1,0 +1,29 @@
+{
+ "frame_w": 32,
+ "frame_h": 32,
+ "cols": 4,
+ "animations": {
+  "idle": {
+   "frames": [
+    0
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "warn": {
+   "frames": [
+    1,
+    2
+   ],
+   "fps": 10,
+   "loop": true
+  },
+  "slam": {
+   "frames": [
+    3
+   ],
+   "fps": 1,
+   "loop": true
+  }
+ }
+}
