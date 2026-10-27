@@ -102,6 +102,19 @@ class L:
                 if self.get(x, y) == ".":
                     self.put(x, y, "b")
 
+    def arena(self, g0, q_off=17, goal_off=27, plats=((5, 9), (24, 9)), ceiling=None):
+        """Boss arena: gate column g0, 32 free columns, then a solid right wall
+        (level width must be g0 + 38) so the locked camera never shows past it."""
+        self.put(g0, self.gt - 1, "Y")
+        for x in range(g0 + 33, self.w):
+            self.column(x, 0, self.h - 1, "B")
+        for (dx, row) in plats:
+            self.platform(g0 + dx, g0 + dx + 3, row)
+        if ceiling:
+            self.ceiling(g0, g0 + 32, 1, ceiling)
+        self.put(g0 + q_off, self.gt - 1, "Q")
+        self.goal(g0 + goal_off)
+
     def goal(self, x):
         self.put(x, self.gt - 1, "G")
 
@@ -183,7 +196,7 @@ def level_1_1():
 
 def level_1_2():
     L2 = L(206, name="Underground Energy", theme="cave", bg="cave", music="underground", time=300,
-           backdrop="wall", backdrop_top=2, powerups="mega,surge,shield", items="")
+           powerups="mega,surge,shield", items="")
     L2.ground(0, 205)
     L2.ceiling(0, 205, 1, "=")
     L2.rect(0, 0, 0, 16, "#")
@@ -287,8 +300,8 @@ def patch_1_2_bonus():
 
 
 def level_1_3():
-    L3 = L(232, name="The White Fortress", theme="fortress", bg="fortress", music="fortress", time=360,
-           backdrop="wall", backdrop_top=0, boss="sugar_king", powerups="mega,shield,double", items="")
+    L3 = L(200, name="The White Fortress", theme="fortress", bg="fortress", music="fortress", time=360,
+           boss="sugar_king", powerups="mega,shield,double", items="")
     L3.ground(0, 231)
     L3.ceiling(0, 160, 1, "B")
     L3.put(3, 12, "S")
@@ -341,11 +354,7 @@ def level_1_3():
     L3.put(141, 12, "u"); L3.put(144, 12, "e"); L3.put(147, 12, "u")
     L3.put(152, 12, "t"); L3.put(156, 12, "t")
     # boss arena: gate at 162, arena 163..231 (wide enough for every screen)
-    L3.put(162, 12, "Y")
-    L3.ceiling(162, 231, 1, "B")
-    L3.platform(176, 179, 9); L3.platform(214, 217, 9)
-    L3.put(196, 12, "Q")
-    L3.goal(224)
+    L3.arena(162, ceiling="B")
     L3.save("1-3")
 
 
@@ -417,7 +426,7 @@ def level_2_1():
 def level_2_2():
     # Taller level: climb through the energy storage tanks (stand rows noted).
     L5 = L(150, h=34, gt=30, name="Energy Storage", theme="factory", bg="factory", music="factory", time=320,
-           backdrop="wall", backdrop_top=0, powerups="double,mega,shield,surge", items="")
+           powerups="double,mega,shield,surge", items="")
     L5.ground(0, 100)
     L5.goo_pit(101, 149, top=31)
     L5.put(3, 29, "S")
@@ -471,8 +480,8 @@ def level_2_2():
 
 
 def level_2_3():
-    L6 = L(236, name="The Machine Core", theme="factory", bg="factory", music="factory", time=360,
-           backdrop="wall", backdrop_top=0, boss="crusher_prime", powerups="mega,surge,shield,double", items="")
+    L6 = L(200, name="The Machine Core", theme="factory", bg="factory", music="factory", time=360,
+           boss="crusher_prime", powerups="mega,surge,shield,double", items="")
     L6.ground(0, 235)
     L6.ceiling(0, 160, 1, "B")
     L6.put(3, 12, "S")
@@ -510,11 +519,7 @@ def level_2_3():
     L6.text(149, 9, "?=?")
     L6.put(150, 5, "$")                         # shard 3
     L6.put(156, 12, "C")
-    L6.put(162, 12, "Y")
-    L6.ceiling(162, 235, 1, "B")
-    L6.platform(170, 173, 9); L6.platform(224, 227, 9)
-    L6.put(198, 12, "Q")
-    L6.goal(229)
+    L6.arena(162, ceiling="B")
     L6.save("2-3")
 
 
@@ -574,7 +579,7 @@ def level_3_1():
 
 def level_3_2():
     L8 = L(214, name="Ice Caverns", theme="ice", bg="cave", music="ice", time=320,
-           backdrop="wall", backdrop_top=2, powerups="shield,mega,double", items="")
+           powerups="shield,mega,double", items="")
     L8.ground(0, 213)
     L8.ceiling(0, 213, 2, "#")
     L8.put(3, 12, "S")
@@ -657,7 +662,7 @@ def patch_3_2_grotto():
 
 
 def level_3_3():
-    L9 = L(240, name="The Storm Bridge", theme="ice", bg="ice", music="ice", time=360,
+    L9 = L(205, name="The Storm Bridge", theme="ice", bg="ice", music="ice", time=360,
            boss="frost_volt", powerups="double,shield,mega,magnet", items="")
     L9.ground(0, 14)
     L9.put(3, 12, "S")
@@ -698,10 +703,7 @@ def level_3_3():
     L9.put(156, 8, "$")                         # shard 3
     L9.ground(160, 239)
     L9.put(163, 12, "C")
-    L9.put(167, 12, "Y")
-    L9.platform(178, 181, 9, "_"); L9.platform(225, 228, 9, "_")
-    L9.put(202, 12, "Q")
-    L9.goal(232)
+    L9.arena(167)
     L9.save("3-3")
 
 
@@ -761,7 +763,7 @@ def level_4_1():
 
 def level_4_2():
     L11 = L(228, name="Energy Reactor", theme="ultra", bg="ultra", music="ultra", time=340,
-            backdrop="wall", backdrop_top=0, powerups="surge,mega,shield,double,surge", items="")
+           powerups="surge,mega,shield,double,surge", items="")
     L11.ground(0, 227)
     L11.ceiling(0, 227, 1, "#")
     L11.put(3, 12, "S")
@@ -808,8 +810,8 @@ def level_4_2():
 
 
 def level_4_3():
-    L12 = L(200, name="The Final Overload", theme="ultra", bg="ultra", music="ultra", time=420,
-            backdrop="wall", backdrop_top=0, boss="overload_core", powerups="mega,surge,shield,overload,double,surge", items="")
+    L12 = L(190, name="The Final Overload", theme="ultra", bg="ultra", music="ultra", time=420,
+           boss="overload_core", powerups="mega,surge,shield,overload,double,surge", items="")
     L12.ground(0, 199)
     L12.ceiling(0, 199, 1, "#")
     L12.put(3, 12, "S")
@@ -848,11 +850,8 @@ def level_4_3():
     L12.put(141, 5, "$")                        # shard 3
     L12.put(146, 12, "C")
     # final arena (152..199)
-    L12.put(152, 12, "Y")
-    L12.platform(162, 166, 10); L12.platform(172, 176, 8)
-    L12.text(164, 6, "!"); L12.text(174, 4, "!")
-    L12.put(192, 12, "Q")
-    L12.goal(158)
+    L12.arena(152, q_off=28, goal_off=5, plats=((9, 10), (17, 8)))
+    L12.put(163, 6, "!"); L12.put(171, 4, "!")
     L12.save("4-3")
 
 

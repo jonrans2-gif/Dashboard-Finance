@@ -48,6 +48,7 @@ func _shoot(p: Node2D) -> void:
 	var orb := Projectile.new()
 	orb.velocity = d * 110.0
 	orb.global_position = from
+	orb.level = level
 	level.entities.add_child(orb)
 	AudioManager.play_sfx("shoot", 0.05)
 

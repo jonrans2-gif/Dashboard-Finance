@@ -3,8 +3,6 @@ theme=cave
 bg=cave
 music=underground
 time=300
-backdrop=wall
-backdrop_top=2
 powerups=mega,surge,shield
 items=
 ---

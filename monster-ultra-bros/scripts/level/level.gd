@@ -227,10 +227,14 @@ func _build_world() -> void:
 	add_child(fx_root)
 
 
+const CLOSED_CHARS := "#%nB=[]I<>X?!"
+
+
 func _ground_tile(x: int, y: int, rng: RandomNumberGenerator) -> Vector2i:
-	var top_open := not LevelData.is_ground_char(data.at(x, y - 1)) and y > 0
-	var left_open := not LevelData.is_ground_char(data.at(x - 1, y)) and x > 0
-	var right_open := not LevelData.is_ground_char(data.at(x + 1, y)) and x < data.width - 1
+	# An edge is drawn only where the ground actually meets open space.
+	var top_open := not CLOSED_CHARS.contains(data.at(x, y - 1)) and y > 0
+	var left_open := not CLOSED_CHARS.contains(data.at(x - 1, y)) and x > 0
+	var right_open := not CLOSED_CHARS.contains(data.at(x + 1, y)) and x < data.width - 1
 	if top_open:
 		if left_open and not right_open:
 			return Tiles.GROUND_TL
@@ -245,6 +249,17 @@ func _ground_tile(x: int, y: int, rng: RandomNumberGenerator) -> Vector2i:
 
 
 func _build_secret_layers(cells: Dictionary, rng: RandomNumberGenerator) -> void:
+	# Items placed inside a fake wall (the core, tokens...) are covered too,
+	# otherwise the secret would show through a hole in the wall.
+	var grew := true
+	while grew:
+		grew = false
+		for c in cells.keys():
+			for d in [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]:
+				var n: Vector2i = c + d
+				if not cells.has(n) and data.at(n.x, n.y) in ["@", "o", "$", "+"]:
+					cells[n] = true
+					grew = true
 	var seen: Dictionary = {}
 	for start in cells.keys():
 		if seen.has(start):
@@ -254,19 +269,51 @@ func _build_secret_layers(cells: Dictionary, rng: RandomNumberGenerator) -> void
 		layer.collision_enabled = false
 		layer.z_index = 8
 		add_child(layer)
+		var group: Array = []
 		var stack: Array = [start]
 		var rect := Rect2(Vector2(start) * T, Vector2(T, T))
 		seen[start] = true
 		while not stack.is_empty():
 			var c: Vector2i = stack.pop_back()
-			layer.set_cell(c, 0, _ground_tile(c.x, c.y, rng))
+			group.append(c)
 			rect = rect.merge(Rect2(Vector2(c) * T, Vector2(T, T)))
 			for d in [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]:
 				var n: Vector2i = c + d
 				if cells.has(n) and not seen.has(n):
 					seen[n] = true
 					stack.append(n)
+		var look := _secret_look(group, cells)
+		for c in group:
+			layer.set_cell(c, 0, look if look != Vector2i(-1, -1) else _ground_tile(c.x, c.y, rng))
 		secret_groups.append({"layer": layer, "rect": rect, "revealed": false})
+
+
+## Fake walls copy the most common solid block around them (stone, brick...);
+## (-1,-1) means "use auto-tiled ground".
+func _secret_look(group: Array, cells: Dictionary) -> Vector2i:
+	var counts := {}
+	for c in group:
+		for d in [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]:
+			var n: Vector2i = c + d
+			if cells.has(n):
+				continue
+			var ch := data.at(n.x, n.y)
+			if ch in ["#", "B", "=", "n"]:
+				counts[ch] = int(counts.get(ch, 0)) + 1
+	var best := "#"
+	var best_n := 0
+	for k in counts.keys():
+		if counts[k] > best_n:
+			best_n = counts[k]
+			best = k
+	match best:
+		"B":
+			return Tiles.HARD
+		"=":
+			return Tiles.BRICK
+		"n":
+			return Tiles.SNOWCAP
+	return Vector2i(-1, -1)
 
 
 func _spawn_entities() -> void:

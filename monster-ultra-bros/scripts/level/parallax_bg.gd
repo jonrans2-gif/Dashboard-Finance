@@ -95,7 +95,7 @@ func _process(delta: float) -> void:
 		var climb: float = max(0.0, lb_screen - screen.y) * factor * 0.25
 		var y := 4.0 + climb
 		if anchor >= 1.0:
-			y = min(screen.y, lb_screen) - h + climb
+			y = min(screen.y, lb_screen - 56.0) - h + climb   # sit on the ground line, pits show sky
 		s.position = Vector2(-off, y)
 	if _snow:
 		_snow.position = Vector2(screen.x / 2.0, -10)

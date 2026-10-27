@@ -3,8 +3,6 @@ theme=factory
 bg=factory
 music=factory
 time=320
-backdrop=wall
-backdrop_top=0
 powerups=double,mega,shield,surge
 items=
 ---

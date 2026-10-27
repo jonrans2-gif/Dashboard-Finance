@@ -3,8 +3,6 @@ theme=ice
 bg=cave
 music=ice
 time=320
-backdrop=wall
-backdrop_top=2
 powerups=shield,mega,double
 items=
 ---

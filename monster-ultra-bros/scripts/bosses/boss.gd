@@ -126,6 +126,7 @@ func shoot_orb(from: Vector2, vel: Vector2, grav := 0.0, anim := "fly_red", boun
 	o.bounces = bounces
 	o.life = 5.0
 	o.global_position = from
+	o.level = level
 	level.entities.add_child(o)
 
 

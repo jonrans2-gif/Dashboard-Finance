@@ -3,8 +3,6 @@ theme=ultra
 bg=ultra
 music=ultra
 time=340
-backdrop=wall
-backdrop_top=0
 powerups=surge,mega,shield,double,surge
 items=
 ---
