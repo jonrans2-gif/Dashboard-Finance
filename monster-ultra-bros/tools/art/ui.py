@@ -28,6 +28,10 @@ def button(icon, pressed):
         c.poly([(24, 10), (37, 25), (29, 25), (29, 37), (19, 37), (19, 25), (11, 25)], col)
     elif icon == "dash":
         c.poly([(28, 8), (14, 27), (23, 27), (19, 40), (34, 20), (25, 20), (28, 8)], col)
+    elif icon == "enter":
+        c.rect(15, 11, 18, 26, col)
+        c.rect(18, 14, 12, 23, face if not pressed else rim)
+        c.poly([(24, 17), (30, 25), (26, 25), (26, 33), (22, 33), (22, 25), (18, 25)], col)
     elif icon == "pause":
         c.rect(16, 13, 6, 22, col); c.rect(26, 13, 6, 22, col)
     return c
@@ -171,9 +175,9 @@ def app_icons():
 
 def build():
     s = Sheet(48, 48)
-    for ic in ("left", "right", "jump", "dash", "pause"):
+    for ic in ("left", "right", "jump", "dash", "pause", "enter"):
         s.anim(ic, [button(ic, False), button(ic, True)], fps=1)
-    s.save("ui/buttons.png", cols=10)
+    s.save("ui/buttons.png", cols=12)
     icons()
     logo()
     app_icons()

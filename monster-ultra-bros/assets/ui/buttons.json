@@ -1,7 +1,7 @@
 {
  "frame_w": 48,
  "frame_h": 48,
- "cols": 10,
+ "cols": 12,
  "animations": {
   "left": {
    "frames": [
@@ -39,6 +39,14 @@
    "frames": [
     8,
     9
+   ],
+   "fps": 1,
+   "loop": true
+  },
+  "enter": {
+   "frames": [
+    10,
+    11
    ],
    "fps": 1,
    "loop": true

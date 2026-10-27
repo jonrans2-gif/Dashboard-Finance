@@ -325,35 +325,39 @@ def star(c, x, y, col=hexc("ffe14a")):
 
 
 def crusher_prime(state):
+    """Boss of world 2. The weak point is the core hatch on TOP of the machine."""
     c = Canvas(64, 56)
     steel = hexc("6f7788"); hi = hexc("a3abbb"); lo = hexc("434958")
-    c.rect(4, 4, 56, 36, steel)
-    c.rect(4, 4, 56, 4, hi)
-    c.rect(54, 8, 6, 32, lo)
-    for x in range(4, 60):
-        for y in range(34, 40):
-            c.set(x, y, hexc("ffc928") if ((x + y) // 3) % 2 == 0 else hexc("26262e"))
-    # side vents
-    for y in range(12, 30, 4):
-        c.hline(7, 13, y, lo); c.hline(50, 56, y, lo)
-    # face plate
-    eye = RED if state in ("warn", "slam", "hurt") else hexc("ffe14a")
-    c.rect(18, 10, 28, 10, hexc("2a2d36"))
-    c.rect(21, 13, 8, 3, eye); c.rect(35, 13, 8, 3, eye)
-    c.line(19, 10, 28, 13, DARK); c.line(44, 10, 35, 13, DARK)
-    # core housing at bottom (weak point)
+    # core housing on top
     core_open = state in ("open", "hurt")
-    c.rect(22, 40, 20, 14, lo)
-    c.rect(24, 42, 16, 10, hexc("1a1d26"))
+    c.rect(20, 2, 24, 14, lo)
+    c.rect(22, 4, 20, 10, hexc("1a1d26"))
     if core_open:
         col = hexc("7dff5a") if state == "open" else WHITE
-        c.circle(32, 47, 5, col)
-        c.circle(32, 47, 2.5, WHITE)
+        c.ellipse(32, 9, 8, 4.5, col)
+        c.ellipse(32, 9, 4, 2, WHITE)
     else:
-        c.hline(24, 39, 46, hexc("5c6272")); c.hline(24, 39, 47, hexc("5c6272"))
+        c.hline(22, 41, 8, hexc("5c6272")); c.hline(22, 41, 10, hexc("5c6272"))
+        c.hline(22, 41, 4, hi)
+    # main body
+    c.rect(4, 16, 56, 38, steel)
+    c.rect(4, 16, 56, 4, hi)
+    c.rect(54, 20, 6, 34, lo)
+    for x in range(4, 60):
+        for y in range(47, 54):
+            c.set(x, y, hexc("ffc928") if ((x + y) // 3) % 2 == 0 else hexc("26262e"))
+    for y in range(24, 44, 4):
+        c.hline(7, 13, y, lo); c.hline(50, 56, y, lo)
+    eye = RED if state in ("warn", "slam", "hurt") else hexc("ffe14a")
+    c.rect(18, 24, 28, 12, hexc("2a2d36"))
+    c.rect(21, 27, 8, 4, eye); c.rect(35, 27, 8, 4, eye)
+    c.line(19, 24, 28, 27, DARK); c.line(44, 24, 35, 27, DARK)
+    if state == "slam":
+        for x in range(21, 43, 3):
+            c.set(x, 34, WHITE)
     if state == "broken":
-        c.line(10, 6, 24, 30, DARK); c.line(40, 8, 52, 32, DARK)
-        c.rect(21, 13, 8, 3, hexc("3a3f4c")); c.rect(35, 13, 8, 3, hexc("3a3f4c"))
+        c.line(10, 18, 24, 44, DARK); c.line(40, 20, 52, 46, DARK)
+        c.rect(21, 27, 8, 4, hexc("3a3f4c")); c.rect(35, 27, 8, 4, hexc("3a3f4c"))
     c.outline()
     return c
 
