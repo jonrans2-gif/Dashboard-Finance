@@ -71,6 +71,7 @@ var shards_total := 0
 var cores_total := 0
 var combo := 0
 var testing := false                  # set by tests: no UI, no scene changes
+var data_override: LevelData = null   # tests can inject a map instead of a file
 
 var _power_queue: Array = []
 var _item_queue: Array = []
@@ -83,7 +84,7 @@ func _ready() -> void:
 	if level_id == "":
 		level_id = GameState.level_id
 	var info := GameState.level_info(level_id)
-	data = LevelData.load_file(info.get("file", "res://levels/%s.txt" % level_id))
+	data = data_override if data_override else LevelData.load_file(info.get("file", "res://levels/%s.txt" % level_id))
 	theme = data.get_str("theme", "hills")
 	time_limit = float(data.get_int("time", 300))
 	time_left = time_limit

@@ -9,7 +9,7 @@ var ground: TileMapLayer
 var theme := "hills"
 var speed := 60.0
 var _x := 0.0
-var _tiles := 0
+var _tiles := -60
 var _jump_t := 2.0
 var _vy := 0.0
 var _y := 0.0

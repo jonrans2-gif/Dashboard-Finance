@@ -103,15 +103,18 @@ func label(text: String, size := 10, color := C_TEXT, align := HORIZONTAL_ALIGNM
 	l.horizontal_alignment = align
 	l.add_theme_font_size_override("font_size", size)
 	l.add_theme_color_override("font_color", color)
+	l.add_theme_color_override("font_shadow_color", Color(0.06, 0.06, 0.1, 0.9))
+	l.add_theme_constant_override("shadow_offset_x", 2 if size >= 20 else 1)
+	l.add_theme_constant_override("shadow_offset_y", 2 if size >= 20 else 1)
 	if size >= 20:
-		l.add_theme_constant_override("outline_size", 4)
+		l.add_theme_constant_override("outline_size", 2)
 	return l
 
 
 func button(text: String, callback: Callable, min_w := 120) -> Button:
 	var b := Button.new()
 	b.text = text
-	b.custom_minimum_size = Vector2(min_w, 22)
+	b.custom_minimum_size = Vector2(min_w, 21)
 	b.focus_mode = Control.FOCUS_ALL
 	b.pressed.connect(func():
 		AudioManager.play_sfx("ui_select")

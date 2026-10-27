@@ -153,8 +153,9 @@ func _icon(n: String) -> TextureRect:
 func _label(text: String) -> Label:
 	var l := Label.new()
 	l.text = text
-	l.add_theme_constant_override("outline_size", 3)
-	l.add_theme_color_override("font_outline_color", Color("101018"))
+	l.add_theme_constant_override("shadow_offset_x", 1)
+	l.add_theme_constant_override("shadow_offset_y", 1)
+	l.add_theme_color_override("font_shadow_color", Color(0.06, 0.06, 0.1, 0.9))
 	return l
 
 

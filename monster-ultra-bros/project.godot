@@ -43,6 +43,13 @@ window/handheld/orientation=4
 window/energy_saving/keep_screen_on=true
 window/vsync/vsync_mode=1
 
+[gui]
+
+theme/custom_font="res://assets/fonts/ultrapixel.ttf"
+theme/default_font_antialiasing=0
+theme/default_font_hinting=0
+theme/default_font_subpixel_positioning=0
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true

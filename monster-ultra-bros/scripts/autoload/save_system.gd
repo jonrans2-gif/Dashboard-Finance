@@ -12,6 +12,7 @@ const HEADER := "MUB-SAVE-1"
 const PROGRESS_PATH := "user://progress.json"
 
 var data: Dictionary = {}
+var progress_path := PROGRESS_PATH   # tests redirect this to a scratch file
 
 
 func _ready() -> void:
@@ -87,7 +88,7 @@ func default_progress() -> Dictionary:
 
 
 func load_progress() -> void:
-	var d := read_json_with_backup(PROGRESS_PATH)
+	var d := read_json_with_backup(progress_path)
 	data = default_progress()
 	for k in d.keys():
 		data[k] = d[k]
@@ -95,7 +96,7 @@ func load_progress() -> void:
 
 
 func save_progress() -> bool:
-	var ok := write_json_atomic(PROGRESS_PATH, data)
+	var ok := write_json_atomic(progress_path, data)
 	progress_changed.emit()
 	return ok
 

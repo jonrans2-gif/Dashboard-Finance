@@ -43,7 +43,7 @@ func _take(kind: String) -> Node:
 			l.add_theme_font_override("font", _font)
 			l.add_theme_font_size_override("font_size", 10)
 			l.add_theme_color_override("font_outline_color", Color(0.1, 0.1, 0.14))
-			l.add_theme_constant_override("outline_size", 3)
+			l.add_theme_constant_override("outline_size", 2)
 			l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			l.size = Vector2(60, 12)
 			l.z_index = 50
