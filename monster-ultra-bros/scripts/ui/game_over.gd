@@ -6,7 +6,7 @@ func _ready() -> void:
 	layer = 70
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	var root := Control.new()
-	root.set_anchors_preset(Control.PRESET_FULL_RECT)
+	root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(root)
 	var bg := UITheme.dim_background(root, 0.0)
 	var t := create_tween()

@@ -12,7 +12,7 @@ var _backdrop: Node
 
 
 func _ready() -> void:
-	set_anchors_preset(Control.PRESET_FULL_RECT)
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	# start on the furthest unlocked world
 	for lv in GameState.LEVELS:
 		if SaveSystem.is_unlocked(lv.id):
@@ -21,7 +21,7 @@ func _ready() -> void:
 	ui.layer = 10
 	add_child(ui)
 	_root = Control.new()
-	_root.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	ui.add_child(_root)
 	var v := VBoxContainer.new()
 	v.set_anchors_preset(Control.PRESET_CENTER)
@@ -82,7 +82,7 @@ func _card(lv: Dictionary) -> Button:
 	b.disabled = not unlocked
 	b.focus_mode = Control.FOCUS_ALL
 	var v := VBoxContainer.new()
-	v.set_anchors_preset(Control.PRESET_FULL_RECT)
+	v.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	v.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	v.add_theme_constant_override("separation", 3)
 	v.alignment = BoxContainer.ALIGNMENT_CENTER

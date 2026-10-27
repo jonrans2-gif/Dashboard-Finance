@@ -44,7 +44,7 @@ func setup(bg: String, cam: Camera2D) -> void:
 	_sky = TextureRect.new()
 	_sky.texture = gt
 	_sky.stretch_mode = TextureRect.STRETCH_SCALE
-	_sky.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_sky.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_sky.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_sky)
 	for lname in ["clouds", "far", "near"]:

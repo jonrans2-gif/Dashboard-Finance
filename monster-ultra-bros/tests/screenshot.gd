@@ -24,7 +24,20 @@ func _ready() -> void:
 	boss = a.size() > 3 and a[3] == "boss"
 	if a.size() > 4:
 		GameState.checkpoint = int(a[4])
-	if target.begins_with("res://"):
+	if target.ends_with(".gd"):
+		var layer := CanvasLayer.new()
+		add_child(layer)
+		var node = load(target).new()
+		if target.ends_with("level_complete.gd"):
+			node.result = {"level": "1-1", "tokens": 42, "enemies": 17, "shards": [0, 2], "shards_total": 3,
+				"cores": [0], "cores_total": 1, "flag_bonus": 2000, "time_left": 187, "time_bonus": 1870,
+				"level_score": 15230, "new_best": true}
+		layer.add_child(node)
+		if node.has_method("open"):
+			node.open()
+		if a.size() > 3 and a[3] == "settings":
+			node.call_deferred("_open_settings")
+	elif target.begins_with("res://"):
 		add_child(load(target).instantiate())
 	else:
 		GameState.level_id = target

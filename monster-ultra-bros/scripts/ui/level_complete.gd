@@ -12,7 +12,7 @@ func _ready() -> void:
 	layer = 65
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	var root := Control.new()
-	root.set_anchors_preset(Control.PRESET_FULL_RECT)
+	root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(root)
 	UITheme.dim_background(root, 0.55)
 	var panel := PanelContainer.new()

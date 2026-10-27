@@ -1,5 +1,4 @@
 .godot/
-build/*.idsig
-build/test.apk
+build/
 *.tmp
 __pycache__/

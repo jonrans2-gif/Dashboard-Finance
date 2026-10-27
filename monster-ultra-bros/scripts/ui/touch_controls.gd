@@ -27,7 +27,7 @@ var _frames: SpriteFrames
 func _ready() -> void:
 	layer = 45
 	_root = Control.new()
-	_root.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_root)
 	_frames = SpriteLib.frames("ui/buttons")

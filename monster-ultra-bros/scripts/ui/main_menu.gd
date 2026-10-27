@@ -11,14 +11,14 @@ var _continue: Button
 
 
 func _ready() -> void:
-	set_anchors_preset(Control.PRESET_FULL_RECT)
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var world := Backdrop.new()
 	add_child(world)
 	var ui := CanvasLayer.new()
 	ui.layer = 10
 	add_child(ui)
 	var root := Control.new()
-	root.set_anchors_preset(Control.PRESET_FULL_RECT)
+	root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	ui.add_child(root)
 	var logo := TextureRect.new()
 	logo.texture = load("res://assets/ui/logo.png")

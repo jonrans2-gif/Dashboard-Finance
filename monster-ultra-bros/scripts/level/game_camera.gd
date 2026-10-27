@@ -18,6 +18,7 @@ var _focus := Vector2.ZERO
 var _shake := 0.0
 var _shake_time := 0.0
 var _zoom_tween: Tween
+var base_zoom := 1.0   # 2x in portrait so the level fills the upper screen
 
 
 func _ready() -> void:
@@ -31,6 +32,7 @@ func view_size() -> Vector2:
 
 
 func snap_to_target() -> void:
+	_update_base_zoom()
 	if target:
 		_focus = target.global_position
 		_look = 0.0
@@ -41,7 +43,19 @@ func _desired() -> Vector2:
 	return Vector2(_focus.x + _look, _focus.y - 24.0)
 
 
+func _update_base_zoom() -> void:
+	var v := get_viewport_rect().size
+	var want := 1.0
+	if v.y > v.x:
+		want = clampf(floorf(v.y / 440.0), 1.0, 3.0)   # integer zoom keeps pixels crisp
+	if want != base_zoom:
+		base_zoom = want
+		if _zoom_tween == null or not _zoom_tween.is_running():
+			zoom = Vector2.ONE * base_zoom
+
+
 func _physics_process(delta: float) -> void:
+	_update_base_zoom()
 	if target == null or not is_instance_valid(target):
 		return
 	var tp := target.global_position
@@ -99,9 +113,9 @@ func shake(strength: float, duration: float) -> void:
 func punch(amount := 0.08, duration := 0.35) -> void:
 	if _zoom_tween:
 		_zoom_tween.kill()
-	zoom = Vector2.ONE * (1.0 + amount)
+	zoom = Vector2.ONE * base_zoom * (1.0 + amount)
 	_zoom_tween = create_tween()
-	_zoom_tween.tween_property(self, "zoom", Vector2.ONE, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	_zoom_tween.tween_property(self, "zoom", Vector2.ONE * base_zoom, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 
 func visible_rect() -> Rect2:

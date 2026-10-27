@@ -26,7 +26,7 @@ var _tex := {}
 func _ready() -> void:
 	layer = 40
 	_root = Control.new()
-	_root.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(_root)
 	for n in ["cell_full", "cell_empty", "life", "token", "shard_full", "shard_empty", "clock", "core"]:
@@ -132,7 +132,7 @@ func _ready() -> void:
 	_root.add_child(_message)
 	_fade = ColorRect.new()
 	_fade.color = Color(0, 0, 0, 0)
-	_fade.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_fade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_fade.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_root.add_child(_fade)
 

@@ -14,16 +14,16 @@ var _scrolling := false
 
 
 func _ready() -> void:
-	set_anchors_preset(Control.PRESET_FULL_RECT)
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var ui := CanvasLayer.new()
 	ui.layer = 10
 	add_child(ui)
 	_root = Control.new()
-	_root.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	ui.add_child(_root)
 	var dark := ColorRect.new()
 	dark.color = Color("08041c")
-	dark.set_anchors_preset(Control.PRESET_FULL_RECT)
+	dark.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_root.add_child(dark)
 	var core := TextureRect.new()
 	core.texture = SpriteLib.frame_texture("boss_overload_core", "dead")
@@ -32,7 +32,7 @@ func _ready() -> void:
 	_root.add_child(core)
 	_flash = ColorRect.new()
 	_flash.color = Color(1, 1, 1, 0)
-	_flash.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_flash.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_flash.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_text = VBoxContainer.new()
 	_text.set_anchors_preset(Control.PRESET_CENTER_TOP)

@@ -127,7 +127,7 @@ func button(text: String, callback: Callable, min_w := 120) -> Button:
 func dim_background(parent: Control, alpha := 0.6) -> ColorRect:
 	var r := ColorRect.new()
 	r.color = Color(0.03, 0.03, 0.05, alpha)
-	r.set_anchors_preset(Control.PRESET_FULL_RECT)
+	r.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	r.mouse_filter = Control.MOUSE_FILTER_STOP
 	parent.add_child(r)
 	return r

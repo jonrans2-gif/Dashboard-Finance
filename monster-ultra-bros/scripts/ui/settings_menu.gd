@@ -10,7 +10,7 @@ var _first: Control
 
 
 func _ready() -> void:
-	set_anchors_preset(Control.PRESET_FULL_RECT)
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_build_ui()
 
@@ -102,7 +102,7 @@ func _rebuild() -> void:
 
 func _ask_reset() -> void:
 	_confirm = Control.new()
-	_confirm.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_confirm.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(_confirm)
 	UITheme.dim_background(_confirm, 0.8)
 	var panel := PanelContainer.new()
