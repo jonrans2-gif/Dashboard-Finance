@@ -21,7 +21,7 @@ enum State { NORMAL, DASH, DEAD, GOAL, CUTSCENE }
 @export var air_accel := 520.0
 @export var air_decel := 260.0
 @export var run_build_time := 0.7        # seconds of running before reaching run_speed
-@export var jump_velocity := 330.0
+@export var jump_velocity := 338.0
 @export var run_jump_bonus := 22.0       # extra launch speed at full run
 @export var double_jump_velocity := 300.0
 @export var gravity_rise := 900.0        # while jump is held
@@ -663,12 +663,25 @@ func _update_powerups(delta: float) -> void:
 
 
 func _try_grow() -> void:
-	# Grow only when there is head room, so the can never ends up inside a ceiling.
-	var extra := BODY_SIZE.y * (MEGA_SCALE - 1.0)
-	if test_move(global_transform, Vector2(0, -extra - 1.0)):
+	# Grow only when the full Mega body fits, so the can never ends up inside a ceiling.
+	if not space_free(BODY_SIZE * MEGA_SCALE):
 		return
 	_mega_pending = false
 	_set_mega(true)
+
+
+## True if a body of `size` (feet at the current position) overlaps no world solid.
+func space_free(size: Vector2) -> bool:
+	if not is_inside_tree():
+		return true
+	var rect := RectangleShape2D.new()
+	rect.size = size - Vector2(0.5, 0.5)
+	var q := PhysicsShapeQueryParameters2D.new()
+	q.shape = rect
+	q.transform = Transform2D(0.0, global_position + Vector2(0, -size.y / 2.0 - 0.5))
+	q.collision_mask = 1
+	q.exclude = [get_rid()]
+	return get_world_2d().direct_space_state.intersect_shape(q, 1).is_empty()
 
 
 func _set_mega(on: bool) -> void:

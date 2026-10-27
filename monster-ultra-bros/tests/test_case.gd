@@ -74,3 +74,20 @@ static func flat(width := 60, standing_row := "") -> Array:
 	for y in 4:
 		rows.append("#".repeat(width))
 	return rows
+
+
+## Returns `rows` with character `ch` written at (x, y).
+static func put(rows: Array, x: int, y: int, ch: String) -> Array:
+	var r: String = rows[y]
+	while r.length() <= x:
+		r += "."
+	rows[y] = r.substr(0, x) + ch + r.substr(x + 1)
+	return rows
+
+
+func enemies_of(lv: Level) -> Array:
+	var out := []
+	for e in lv.get_tree().get_nodes_in_group("enemies"):
+		if e is Enemy and lv.is_ancestor_of(e):
+			out.append(e)
+	return out

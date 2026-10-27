@@ -19,7 +19,12 @@ func _ready() -> void:
 	for name in SUITES:
 		if only.size() > 0 and not (name in only):
 			continue
-		var suite: TestCase = load("res://tests/%s.gd" % name).new()
+		var script: GDScript = load("res://tests/%s.gd" % name)
+		if script == null or not script.can_instantiate():
+			all_failures.append("%s: suite failed to compile" % name)
+			lines.append("FAIL %s (compile error)" % name)
+			continue
+		var suite: TestCase = script.new()
 		add_child(suite)
 		var methods: Array = []
 		for m in suite.get_method_list():
@@ -28,6 +33,7 @@ func _ready() -> void:
 		methods.sort()
 		for m in methods:
 			suite.current = "%s.%s" % [name, m]
+			print("RUN ", suite.current)
 			var before := suite.failures.size()
 			await suite.call(m)
 			suite.reset_state()
